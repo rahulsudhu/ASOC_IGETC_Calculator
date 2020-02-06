@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>
+            IGETC Calculator
+        </title>
+        <script>src = "https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"</script>
+        <script>src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"</script>     
+        <style>
+            .list {
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 0px;
+                padding: 10px 0 0;
+            }
+            .list > li, .extra {
+                display: block;
+                background-color: #a7b11e;
+                padding: 10px;
+            }
+            .info {
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 40px;
+                padding: 10px 0 0;
+                background-color: #a1da1d;
+                color: blueviolet;
+            }
+            .extra {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #00ff00;
+            }
+            .interaction {
+                text-align: center
+            }
+        </style>
+    </head>
+    <body style="background-color:green;text-align:center">
+    <div class = "info">
+    <p>Welcome to the IGETC Calculator! This is a quick check to see if you have completed the IGETC requirements for CS and UC. </p>
+    <p> If you have taken courses at other colleges, please enter the Ohlone Equivalent. Please enter your courses taken by its ID (example: "ENGL 101A")</p>
+    <img src= "asoclogo.png" width="250" height="250">  </img>
+    </div>
+    <div class ="interaction" id="courses">
+        <button class="del" id = "del-btn">Remove from list</button>
+        <ul class = "list" id="courselist">
+            <li>
+                <span class ="cname">Course</span>      
+            </li>
+        </ul>
+        <div class= "extra">
+            <form action= "/courses" method="post" id="addform"> 
+                <input type="text" id="cname-field" name = "course" placeholder="Course"/>
+                <button type="submit" id="add-btn">Add Class</button>
+            </form> 
+        </div>
+    </div>
+    <a href="/calculation" class="button"> Calculate! </a>
+    </body>
+    <script type="text/javascript">
+        document.getElementById("add-btn").onclick = function() {
+            var text = document.getElementById("cname-field").value; 
+            text = text.toUpperCase();
+            console.log(text);
+            var li = "<li>" + text + "</li>";
+            document.getElementById("courselist").innerHTML += li;
+            //document.getElementById("cname-field").value = ""; 
+        }
+        document.getElementById("del-btn").onclick = function() {
+                
+        }
+          </script>
+</html>
