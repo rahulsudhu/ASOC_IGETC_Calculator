@@ -12,7 +12,6 @@ ICT = inputClassesTaken[:]
 print(ICT)
 #print(" script input: ", inputClassesTaken)
 
-
 #python dictionary for all the classes
 igetcAreas = {"area1": [], "area2" : [], "area3a": [], "area3b": [], "area4": [], "area5alab": [], "area5blab":[],"area5aNon":[],"area5bNon":[], "area6":[], "areaUCA":[]}
 igetcCoursesLeft = {"area1": 0, "area2" : 0, "area3" : 0, "area3a": 0, "area3b": 0, "area4": 0, "area5alab": 0, "area5blab":0,"area5aNon":0,"area5bNon": 0, "area6": 0, "areaUCA": 0}
@@ -66,7 +65,7 @@ def compareClasses(inputClassesTaken):
     artsAndHumanities = completeArtsAndHumanities(ICT)
     areasWithCourses["Area 3: Arts and Humanities (1 course left)"] = artsAndHumanities[2]
     areasWithCourses["Area 3A: Arts (1 course left)"] = artsAndHumanities[0]
-    areasWithCourses["Area 3B: Humanities (1 course left)"] = artsAndHumanities[1]
+    areasWithCourses["Area 3B: Humanities (1 course left)"] = artsAndH  v   umanities[1]
     areasWithCourses["Area 4: Social and Behavioral Science (" + str(igetcCoursesLeft["area4"]) + " courses left)"] = completeSocialAndBehavioralSciences(ICT)
     areasWithCourses["Area 5A: Physical Science (1 course left)"] = completePhysicalAndBiologicalSciences(ICT)[0]
     areasWithCourses["Area 5B: Biological Science (1 course left)"] = completePhysicalAndBiologicalSciences(ICT)[1]
@@ -76,7 +75,7 @@ def compareClasses(inputClassesTaken):
     for area in areasWithCourses:
         if areasWithCourses[area]:
             output[area] = areasWithCourses[area]
-    return output
+    return output       
 
 
 def completeEnglish(inputClassesTaken):
@@ -195,7 +194,6 @@ def completePhysicalAndBiologicalSciences(inputClassesTaken):
     for inputCourse in inputClassesTaken:
         if (inputCourse in aLab) or (inputCourse in bLab) or (inputCourse in aNon) or (inputCourse in bNon):
             newList.append(inputCourse)
-    
     for course in newList:
         if course in aLab:
             alcomplete = True

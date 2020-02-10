@@ -7,13 +7,17 @@ class CourseList extends React.Component {
       color: "green"
     }
     var style2 = {
-      backgroundColor: "yellow",
+      //backgroundColor: "yellow",
       textAlign: "center"
     }
+    var style3 = {
+      backgroundColor: "yellow",
+      border: "1px solid black"
+    }
     var areaobject = this.props.areaobj;
-    
+
     function completed () {
-      if (Object.keys(areaobject).length == 1 && Object.keys(areaobject)[0].includes("Area 6")) {
+      if (Object.keys(areaobject).length == 1 && Object.keys(areaobject)[0].includes("Area 7")) {
         return (<p>Congratulations you have completed IGETC for UC</p>)
       }
     }
@@ -23,11 +27,10 @@ class CourseList extends React.Component {
             return <var> {course} | </var>})} </td> </tr>
       )
     });
-
     return (
       <div className ="areas" style = {style2}>
       <h1>Area List</h1>
-      <table style = {styles}>
+      <table style = {style3}>
         <th style = {styles}>Areas</th> 
         <th style = {styles}>Courses</th>
         {itemstable}
