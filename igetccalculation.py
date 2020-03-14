@@ -2,6 +2,7 @@ import xlrd
 import sys
 import json
 
+#TODO: remove button
 path = "book.xlsx"
 inputWorkbook = xlrd.open_workbook(path)
 inputWorksheet = inputWorkbook.sheet_by_index(0)
@@ -71,11 +72,11 @@ def compareClasses(inputClassesTaken):
     areasWithCourses["Area 5B: Biological Science (1 course left)"] = completePhysicalAndBiologicalSciences(ICT)[1]
     areasWithCourses["Area 6: Language other than English (1 courses left)"] = completeLanguage(ICT)
     areasWithCourses["US History, Constitution, and American Ideals (CSU required only) (" + str(igetcCoursesLeft["areaUCA"]) + " courses left)"] = completeHistory(ICT)
-    output = {} 
+    output = {}
     for area in areasWithCourses:
         if areasWithCourses[area]:
             output[area] = areasWithCourses[area]
-    return output       
+    return output
 
 
 def completeEnglish(inputClassesTaken):
@@ -101,7 +102,7 @@ def completeMath(inputClassesTaken):
             if inputCourse in ICT:
                 ICT.remove(inputCourse)
             return []
-    return mathCourses   
+    return mathCourses
 
 def completeArtsAndHumanities(inputClassesTaken):
     # user must take one class from arts one class from humanites and an extra class from either area
@@ -154,7 +155,7 @@ def completeSocialAndBehavioralSciences(inputClassesTaken):
     disciplineList = {"AJ ": 0,"ANTH": 0,"BA ": 0,"BRDC": 0,"CHS": 0,"COMM": 0, "ECS": 0,"ENVS": 0,"GEOG": 0,"HIST": 0,"IS ": 0,"JOUR": 0,"PS ": 0,"PSY": 0,"SOC": 0,"WS ": 0}
     for i in newList:
         for d in disciplineList:
-            if i[:3] == d[:3]:        
+            if i[:3] == d[:3]:
                 disciplineList[d] += 1
             if disciplineList[d] > 2:
                 for course in socialScience:
@@ -166,7 +167,7 @@ def completeSocialAndBehavioralSciences(inputClassesTaken):
             socialScience.remove(i)
         except ValueError:
             pass
-    
+
     dcounter = 0
     tcounter = 0
     for d in disciplineList:
@@ -181,7 +182,7 @@ def completeSocialAndBehavioralSciences(inputClassesTaken):
 
 
 def completePhysicalAndBiologicalSciences(inputClassesTaken):
-    aLab = igetcAreas["area5alab"] 
+    aLab = igetcAreas["area5alab"]
     bLab = igetcAreas["area5blab"]
     aNon = igetcAreas["area5aNon"]
     bNon = igetcAreas["area5bNon"]
@@ -225,7 +226,7 @@ def completeLanguage(inputClassesTaken):
             if inputCourse in ICT:
                 ICT.remove(inputCourse)
             return []
-    return language   
+    return language
 
 def completeHistory(inputClassesTaken):
     history = igetcAreas["areaUCA"][:]
@@ -254,7 +255,7 @@ def completeHistory(inputClassesTaken):
         counter = 0
         return []
     igetcCoursesLeft["areaUCA"] = counter
-    return igetcAreas["areaUCA"] 
+    return igetcAreas["areaUCA"]
 
 x = compareClasses(inputClassesTaken)
 
