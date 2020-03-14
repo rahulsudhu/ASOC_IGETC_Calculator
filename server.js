@@ -20,6 +20,8 @@ var CalcComponent = require('./calculationoutput.jsx');
 
 var app = express();
 var courses = []; 
+var port = process.env.PORT || 8080;
+
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static(__dirname + '/views'));
@@ -67,7 +69,7 @@ function calculate(req, res) {
 
 app.get('/calculation', calculate);
 
-app.listen(8080,() => {
-    console.log("Started on port " + 8080);
+app.listen(port,() => {
+    console.log("Started on port " + port);
 });
 
