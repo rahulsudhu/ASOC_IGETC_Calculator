@@ -65,7 +65,7 @@ def compareClasses(inputClassesTaken):
     artsAndHumanities = completeArtsAndHumanities(ICT)
     areasWithCourses["Area 3: Arts and Humanities (1 course left)"] = artsAndHumanities[2]
     areasWithCourses["Area 3A: Arts (1 course left)"] = artsAndHumanities[0]
-    areasWithCourses["Area 3B: Humanities (1 course left)"] = artsAndH  v   umanities[1]
+    areasWithCourses["Area 3B: Humanities (1 course left)"] = artsAndHumanities[1]
     areasWithCourses["Area 4: Social and Behavioral Science (" + str(igetcCoursesLeft["area4"]) + " courses left)"] = completeSocialAndBehavioralSciences(ICT)
     areasWithCourses["Area 5A: Physical Science (1 course left)"] = completePhysicalAndBiologicalSciences(ICT)[0]
     areasWithCourses["Area 5B: Biological Science (1 course left)"] = completePhysicalAndBiologicalSciences(ICT)[1]
