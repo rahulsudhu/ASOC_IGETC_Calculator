@@ -1,9 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 require('babel-register') ({
     presets: ['react']
 });
@@ -19,31 +13,43 @@ var ReactDOMServer = require('react-dom/server');
 var CalcComponent = require('./calculationoutput.jsx');
 
 var app = express();
-var courses = []; 
+var courses = [];
 var port = process.env.PORT || 8080;
 
-
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/views'));
-app.use(upload.array()); 
+app.use(upload.array());
 
+//home endpoint
 app.get('/', (req, res) => {
     fs.writeFile('outputclasses.json', JSON.stringify({}));
     res.render("index.html");
 });
 
-app.get('/test', (req,res) => {
-    res.sendFile('output.html', {root : __dirname + '/views'});
-});
-
+//add class endpoint
 app.post('/courses', (req, res) => {
     console.log(req.body.course);
     courses.push(req.body.course.toUpperCase());
   });
 
+//calculate endpoint
+app.get('/calculation', calculate);
+
+//TODO: make this endpoint
 app.delete('/delete', () => {
     courses.pop();
 });
+
+//start app on 'port'
+app.listen(port,() => {
+    console.log("Started on port " + port);
+});
+
+/*
+app.get('/test', (req,res) => {
+    res.sendFile('output.html', {root : __dirname + '/views'});
+});
+*/
 
 function calculate(req, res) {
     var options = {
@@ -58,18 +64,12 @@ function calculate(req, res) {
             courses = []
             console.log("python script output:" + data);
             var output = fs.readFileSync("outputclasses.json");
-            areaobj = JSON.parse(output);
+            var areaobj = JSON.parse(output);
             //console.log(areaobj)
-            fs.writeFileSync("./outputclasses.json", "{}"); 
+            //clear .json
+            fs.writeFileSync("./outputclasses.json", "{}");
             var html = ReactDOMServer.renderToString(React.createElement(CalcComponent, {areaobj}, null));
             res.send(html);
         }
     );
 }
-
-app.get('/calculation', calculate);
-
-app.listen(port,() => {
-    console.log("Started on port " + port);
-});
-
